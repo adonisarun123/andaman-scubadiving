@@ -13,15 +13,18 @@
     --sand-neutral: #F5F5DC;
     --seaweed-green: #059669;
     --sunset-orange: #EA580C;
+    --border: 0 0% 89.8%;
   }
 
   * {
-    @apply border-border;
+    box-sizing: border-box;
   }
 
   body {
     @apply bg-deep-ocean text-foam-white;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+    margin: 0;
   }
 
   ::selection {
@@ -32,36 +35,70 @@
 @layer components {
   /* Glass morphism effect */
   .glass-morphism {
-    @apply bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   }
 
   /* Ocean gradient background */
   .ocean-gradient {
     background: linear-gradient(
       180deg,
-      var(--deep-ocean) 0%,
-      var(--ocean-blue) 50%,
-      var(--reef-blue) 100%
+      #0B1426 0%,
+      #1E3A8A 50%,
+      #3B82F6 100%
     );
   }
 
   /* Gradient text */
   .gradient-text {
-    @apply bg-gradient-to-r from-surface-blue to-coral-accent bg-clip-text text-transparent;
+    background: linear-gradient(to right, #60A5FA, #F97316);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   /* Button styles */
   .btn-primary {
-    @apply px-8 py-4 bg-gradient-to-r from-reef-blue to-coral-accent text-foam-white font-semibold rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95;
+    @apply px-8 py-4 text-foam-white font-semibold rounded-full transition-all duration-300;
+    background: linear-gradient(to right, #3B82F6, #F97316);
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+  }
+  
+  .btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+  }
+  
+  .btn-primary:active {
+    transform: scale(0.95);
   }
 
   .btn-secondary {
-    @apply px-8 py-4 bg-transparent border-2 border-foam-white/30 text-foam-white font-semibold rounded-full transition-all duration-300 hover:bg-foam-white/10 hover:border-foam-white/50 hover:shadow-lg active:scale-95;
+    @apply px-8 py-4 bg-transparent text-foam-white font-semibold rounded-full transition-all duration-300;
+    border: 2px solid rgba(248, 250, 252, 0.3);
+  }
+  
+  .btn-secondary:hover {
+    background: rgba(248, 250, 252, 0.1);
+    border-color: rgba(248, 250, 252, 0.5);
+    box-shadow: 0 4px 15px rgba(248, 250, 252, 0.2);
+  }
+  
+  .btn-secondary:active {
+    transform: scale(0.95);
   }
 
   /* Card hover effect */
   .card-hover {
-    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl;
+    @apply transition-all duration-300;
+  }
+  
+  .card-hover:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   }
 
   /* Section padding */
@@ -71,7 +108,15 @@
 
   /* Metric card */
   .metric-card {
-    @apply glass-morphism p-6 rounded-xl text-center transition-all duration-300 hover:scale-105;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    @apply p-6 rounded-xl text-center transition-all duration-300;
+  }
+  
+  .metric-card:hover {
+    transform: scale(1.05);
   }
 
   /* Wave pattern */

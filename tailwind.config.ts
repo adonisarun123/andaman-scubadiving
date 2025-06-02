@@ -17,7 +17,8 @@ export default {
         "coral-accent": "#F97316",
         "sand-neutral": "#F5F5DC",
         "seaweed-green": "#059669",
-        "sunset-orange": "#EA580C"
+        "sunset-orange": "#EA580C",
+        border: "hsl(var(--border))",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
