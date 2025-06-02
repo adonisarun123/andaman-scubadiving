@@ -1,26 +1,118 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --deep-ocean: #0B1426;
+    --ocean-blue: #1E3A8A;
+    --reef-blue: #3B82F6;
+    --surface-blue: #60A5FA;
+    --foam-white: #F8FAFC;
+    --coral-accent: #F97316;
+    --sand-neutral: #F5F5DC;
+    --seaweed-green: #059669;
+    --sunset-orange: #EA580C;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-deep-ocean text-foam-white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  ::selection {
+    @apply bg-coral-accent/30 text-foam-white;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Glass morphism effect */
+  .glass-morphism {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl;
+  }
+
+  /* Ocean gradient background */
+  .ocean-gradient {
+    background: linear-gradient(
+      180deg,
+      var(--deep-ocean) 0%,
+      var(--ocean-blue) 50%,
+      var(--reef-blue) 100%
+    );
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-surface-blue to-coral-accent bg-clip-text text-transparent;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply px-8 py-4 bg-gradient-to-r from-reef-blue to-coral-accent text-foam-white font-semibold rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply px-8 py-4 bg-transparent border-2 border-foam-white/30 text-foam-white font-semibold rounded-full transition-all duration-300 hover:bg-foam-white/10 hover:border-foam-white/50 hover:shadow-lg active:scale-95;
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl;
+  }
+
+  /* Section padding */
+  .section-padding {
+    @apply py-20 md:py-32 px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Metric card */
+  .metric-card {
+    @apply glass-morphism p-6 rounded-xl text-center transition-all duration-300 hover:scale-105;
+  }
+
+  /* Wave pattern */
+  .wave-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q 25 0, 50 10 T 100 10 L 100 20 L 0 20 Z' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    animation: wave 10s linear infinite;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-deep-ocean;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-reef-blue rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-coral-accent;
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom animations */
+@keyframes wave {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 100px;
+  }
 }
